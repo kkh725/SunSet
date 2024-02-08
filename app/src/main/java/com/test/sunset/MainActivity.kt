@@ -9,6 +9,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        WeatherRepository().getWeatherApi("36.720","-4.420")
+        WeatherRepository().getSunSet("36.720","-4.420")
     }
 }
