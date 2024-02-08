@@ -15,3 +15,36 @@ data class SunSetResponse(
     @Expose
     val tzid: String
 )
+
+data class Results(
+    @SerializedName("astronomical_twilight_begin")
+    @Expose
+    val astronomicalTwilightBegin: String,
+    @SerializedName("astronomical_twilight_end")
+    @Expose
+    val astronomicalTwilightEnd: String,
+    @SerializedName("civil_twilight_begin")
+    @Expose
+    val civilTwilightBegin: String,
+    @SerializedName("civil_twilight_end")
+    @Expose
+    val civilTwilightEnd: String,
+    @SerializedName("day_length")
+    @Expose
+    val dayLength: String,
+    @SerializedName("nautical_twilight_begin")
+    @Expose
+    val nauticalTwilightBegin: String,
+    @SerializedName("nautical_twilight_end")
+    @Expose
+    val nauticalTwilightEnd: String,
+    @SerializedName("solar_noon")
+    @Expose
+    val solarNoon: String,
+    @SerializedName("sunrise")
+    @Expose
+    val sunrise: String,
+    @SerializedName("sunset")
+    @Expose
+    val sunset: String
+)

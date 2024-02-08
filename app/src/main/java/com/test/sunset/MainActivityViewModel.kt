@@ -9,8 +9,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel(private val weatherRepository: WeatherRepository) : ViewModel() {
+class MainActivityViewModel() : ViewModel() {
 
+    private lateinit var sunsetResult : String
     private val _sunset = MutableLiveData<String>()
     val sunset: LiveData<String> = _sunset
 
@@ -18,8 +19,9 @@ class MainActivityViewModel(private val weatherRepository: WeatherRepository) : 
     fun fetchSunset(lat: String, lng: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val sunsetResult = weatherRepository.getSunSet(lat, lng)
-                _sunset.value = sunsetResult
+                sunsetResult = WeatherRepository().getSunSet(lat, lng)
+                _sunset.postValue(sunsetResult)
+
             } catch (e: Exception) {
                 // Handle error
                 Log.e("MyViewModel", "Error fetching sunset: ${e.message}", e)
