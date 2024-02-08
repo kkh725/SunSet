@@ -17,18 +17,14 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
+        //데이터 바인딩을 사용하기 때문에 옵저버 사용x
+        //mvvm에서는 그러면 주로 databinding, live data, viewmodel, repository, data.등이 어우러져 사용된다.
+
         binding.myViewModel = viewModel
         binding.lifecycleOwner = this
-
-        setupObserver()
 
         viewModel.fetchSunset("36.720","-4.420")
     }
 
-    private fun setupObserver(){
-        viewModel.sunset.observe(this) { sunset ->
-            // 일몰 정보가 업데이트되면 이 곳에서 처리하세요.
-            binding.tv1.text = sunset
-        }
-    }
+
 }
