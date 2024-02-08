@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
+
 }
 
 android {
@@ -35,15 +37,15 @@ android {
     }
 }
 
+
 dependencies {
 
     //레트로핏 추가
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.google.code.gson:gson:2.10")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // Gson 컨버터 추가
-
     implementation ("com.google.code.gson:gson:2.10")
-
+    implementation ("com.squareup.retrofit2:converter-simplexml:2.9.0")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
