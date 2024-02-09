@@ -17,8 +17,8 @@ class WeatherRepository {
 
     //이 클래스 자체에서 코루틴을 통해 비동기 작업을 수행하게 되면, sunset값이 항상 error가 될것이기 때문에
     // 뷰 모델에서 비동기 작업을 수행하게 해서 sunset값을 제대로 return 할 수 있게 만들자.
-    suspend fun getSunSet(lat: String, lng: String): String {
-        var sunset: String = "error"
+    suspend fun getSunSetAPI(lat: String, lng: String): String {
+        var sunset= "error"
         val retrofit = Retrofit.Builder().baseUrl("https://api.sunrise-sunset.org/")
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create())).build()
 

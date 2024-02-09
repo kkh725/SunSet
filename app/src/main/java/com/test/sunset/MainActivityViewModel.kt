@@ -19,7 +19,7 @@ class MainActivityViewModel() : ViewModel() {
     fun fetchSunset(lat: String, lng: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                sunsetResult = WeatherRepository().getSunSet(lat, lng)
+                sunsetResult = WeatherRepository().getSunSetAPI(lat, lng)
                 _sunset.postValue(sunsetResult)
 
             } catch (e: Exception) {

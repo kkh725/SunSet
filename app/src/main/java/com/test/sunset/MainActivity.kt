@@ -2,6 +2,7 @@ package com.test.sunset
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.test.sunset.databinding.ActivityMainBinding
 
@@ -24,6 +25,14 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         viewModel.fetchSunset("36.720","-4.420")
+
+        //옵저버 를 사용해 관찰가능
+        viewModel.sunset.observe(this, Observer {
+            binding.tv1.text = it
+        })
+
+
+
     }
 
 
