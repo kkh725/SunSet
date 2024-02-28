@@ -1,12 +1,8 @@
 package com.test.sunset;
 
-import com.test.sunset.Item.SunSetResponse
-import com.test.sunset.Item.WeatherResponse
+import com.test.sunset.itemss.SunSetResponse
 import retrofit2.Response;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET
-import retrofit2.http.POST;
 import retrofit2.http.Query
 
 interface OpenWeatherMapService {

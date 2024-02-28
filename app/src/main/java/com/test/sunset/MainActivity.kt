@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.test.sunset.Adapter.DestinationAdapter
+import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +32,16 @@ class MainActivity : AppCompatActivity() {
         viewModel.sunset.observe(this, Observer {
             binding.tv1.text = it
         })
+
+        val destinationlist : MutableList<DestinationInfo> = mutableListOf()
+        destinationlist.add(DestinationInfo("hihihihi 목적지 추가추가추가"))
+        destinationlist.add(DestinationInfo("hihihihi 목적지 추가추가추가"))
+        destinationlist.add(DestinationInfo("hihihihi 목적지 추가추가추가"))
+        destinationlist.add(DestinationInfo("hihihihi 목적지 추가추가추가"))
+
+
+        val rv_destination = binding.rvDestination
+        rv_destination.adapter = DestinationAdapter(destinationlist)
 
 
 

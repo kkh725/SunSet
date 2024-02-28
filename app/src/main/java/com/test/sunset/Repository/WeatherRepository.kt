@@ -2,13 +2,8 @@ package com.test.sunset.Repository
 
 import android.util.Log
 import com.google.gson.GsonBuilder
-import com.test.sunset.Item.SunSetResponse
-import com.test.sunset.Item.WeatherResponse
+import com.test.sunset.itemss.SunSetResponse
 import com.test.sunset.OpenWeatherMapService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
