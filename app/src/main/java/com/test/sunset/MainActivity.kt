@@ -34,15 +34,14 @@ class MainActivity : AppCompatActivity() {
 //        })
 
         val destinationlist : MutableList<DestinationInfo> = mutableListOf()
-        destinationlist.add(DestinationInfo("유명 명소"))
-        destinationlist.add(DestinationInfo("뭐 이것저것"))
-        destinationlist.add(DestinationInfo("저것 이것"))
 
-        destinationlist.add(DestinationInfo("유명 명소"))
-        destinationlist.add(DestinationInfo("뭐 이것저것"))
-        destinationlist.add(DestinationInfo("저것 이것"))
-        destinationlist.add(DestinationInfo("hihihihi 목적지 추가추가추가"))
-        destinationlist.add(DestinationInfo("hihihihi 목적지 추가추가추가"))
+        destinationlist.add(DestinationInfo("유명 명소","1"))
+        destinationlist.add(DestinationInfo("유명 명소","2"))
+        destinationlist.add(DestinationInfo("유명 명소","3"))
+        destinationlist.add(DestinationInfo("유명 명소","4"))
+        destinationlist.add(DestinationInfo("유명 명소","5"))
+
+
 
 
         val rv_destination = binding.rvDestination

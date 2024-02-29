@@ -1,3 +1,3 @@
 package com.test.sunset.itemss
 
-data class DestinationInfo(val destinationinfo: String)
+data class DestinationInfo(val destinationinfo: String , val type : String)

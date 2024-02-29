@@ -12,9 +12,11 @@ import kotlinx.coroutines.launch
 class MainActivityViewModel() : ViewModel() {
 
     private lateinit var sunsetResult : String
+
     private val _sunset = MutableLiveData<String>()
     private val _sunrise = MutableLiveData<String>()
     private val _isLoading = MutableLiveData<Boolean>()
+
     val sunset: LiveData<String> = _sunset
     val sunrise: LiveData<String> = _sunrise
     val isLoading : LiveData<Boolean> = _isLoading
@@ -28,8 +30,8 @@ class MainActivityViewModel() : ViewModel() {
                 sunsetResult = WeatherRepository().getSunSetAPI(lat, lng)
                 val parts = sunsetResult.split(" ") // 가져온 문자열을 sunset, sunrise 로 자른다.
 
-                _sunset.postValue("일출시각 : " + parts[0] + parts[1])
-                _sunrise.postValue("일몰시각 : " + parts[2] + parts[3])
+                _sunset.postValue("일몰시각 : " + parts[0] + parts[1])
+                _sunrise.postValue("일출시각 : " + parts[2] + parts[3])
 
             } catch (e: Exception) {
                 // Handle error
