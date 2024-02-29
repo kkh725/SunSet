@@ -18,6 +18,7 @@ class DestinationHolder(private val binding: GridItemDestinationBinding) : Recyc
                     .setMessage("이것은 타입1번의 view 입니다.\n")
                     .show()
             }
+
             "2" ->  binding.view3.setOnClickListener {
                 AlertDialog.Builder(binding.root.context)
                     .setTitle("주의")
