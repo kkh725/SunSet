@@ -29,13 +29,18 @@ class MainActivity : AppCompatActivity() {
         viewModel.fetchSunset("36.720","-4.420")
 
         //옵저버 를 사용해 관찰가능
-        viewModel.sunset.observe(this, Observer {
-            binding.tv1.text = it
-        })
+//        viewModel.sunset.observe(this, Observer {
+//            binding.tv1.text = it
+//        })
 
         val destinationlist : MutableList<DestinationInfo> = mutableListOf()
-        destinationlist.add(DestinationInfo("hihihihi 목적지 추가추가추가"))
-        destinationlist.add(DestinationInfo("hihihihi 목적지 추가추가추가"))
+        destinationlist.add(DestinationInfo("유명 명소"))
+        destinationlist.add(DestinationInfo("뭐 이것저것"))
+        destinationlist.add(DestinationInfo("저것 이것"))
+
+        destinationlist.add(DestinationInfo("유명 명소"))
+        destinationlist.add(DestinationInfo("뭐 이것저것"))
+        destinationlist.add(DestinationInfo("저것 이것"))
         destinationlist.add(DestinationInfo("hihihihi 목적지 추가추가추가"))
         destinationlist.add(DestinationInfo("hihihihi 목적지 추가추가추가"))
 

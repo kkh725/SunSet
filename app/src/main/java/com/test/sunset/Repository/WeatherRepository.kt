@@ -14,6 +14,7 @@ class WeatherRepository {
     // 뷰 모델에서 비동기 작업을 수행하게 해서 sunset값을 제대로 return 할 수 있게 만들자.
     suspend fun getSunSetAPI(lat: String, lng: String): String {
         var sunset= "error"
+        var sunrise = "err"
         val retrofit = Retrofit.Builder().baseUrl("https://api.sunrise-sunset.org/")
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create())).build()
 
@@ -29,6 +30,7 @@ class WeatherRepository {
                 val sunSetResponse: SunSetResponse? = response.body()
                 if (sunSetResponse != null) {
                     sunset = sunSetResponse.results.sunset
+                    sunrise = sunSetResponse.results.sunrise
                 }
             } else {
                 Log.d("post2", "44")
@@ -41,6 +43,6 @@ class WeatherRepository {
             // 예외 처리
             Log.e("error", "Exception: ${e.message}", e)
         }
-        return sunset
+        return "$sunset $sunrise"
     }
 }
