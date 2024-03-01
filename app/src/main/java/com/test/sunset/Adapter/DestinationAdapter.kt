@@ -3,7 +3,9 @@ package com.test.sunset.Adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.test.sunset.R
 import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.databinding.GridItemDestinationBinding
 
@@ -21,7 +23,6 @@ class DestinationAdapter(private val DestinationList : List<DestinationInfo>) : 
     override fun onBindViewHolder(holder: DestinationHolder, position: Int) {
         val destinationlist = DestinationList[position]
         holder.bind(destinationlist)
-
         //binding.view3.setOnClickListener{Log.d("position",position.toString())}
         //holder.itemView.setOnClickListener{Log.d("position",position.toString())} 해당 position의 아이템을 눌렀을때 작동.
     }

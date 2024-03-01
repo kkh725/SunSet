@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.sunset.Repository.WeatherRepository
+import com.test.sunset.itemss.DestinationInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,10 +17,12 @@ class MainActivityViewModel() : ViewModel() {
     private val _sunset = MutableLiveData<String>()
     private val _sunrise = MutableLiveData<String>()
     private val _isLoading = MutableLiveData<Boolean>()
+    private val _item = MutableLiveData<DestinationInfo>()
 
     val sunset: LiveData<String> = _sunset
     val sunrise: LiveData<String> = _sunrise
     val isLoading : LiveData<Boolean> = _isLoading
+    val item : LiveData<DestinationInfo> = _item
 
     //view model 에서 repository에서의 api 호출을 진행하고, 코루틴으로 둘러싸서 제대로된 sunset값을 얻는다.
     fun fetchSunset(lat: String, lng: String) {
@@ -41,5 +44,9 @@ class MainActivityViewModel() : ViewModel() {
                 _isLoading.postValue(false) //로딩 종료
             }
         }
+    }
+
+    fun updateItemList(newItem : DestinationInfo){
+        _item.postValue(newItem)
     }
 }
