@@ -2,6 +2,7 @@ package com.test.sunset
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.test.sunset.Adapter.DestinationAdapter
@@ -35,13 +36,13 @@ class MainActivity : AppCompatActivity() {
 
         val destinationlist : MutableList<DestinationInfo> = mutableListOf()
 
-        destinationlist.add(DestinationInfo("유명 명소","1"))
-        destinationlist.add(DestinationInfo("유명 명소","2"))
-        destinationlist.add(DestinationInfo("유명 명소","3"))
-        destinationlist.add(DestinationInfo("유명 명소","4"))
-        destinationlist.add(DestinationInfo("유명 명소","5"))
-
-
+        //목적지 리스트에 목적지정보와 종류, 색이 들어간 목록을 추가한다.
+        //어댑터에 추가하면 adatper실행, -> 뷰홀더 실행 -> 데이터바인딩으로 엮여있는 bind가 수행되기때문에 xml에서 잘 결합됨.
+        destinationlist.add(DestinationInfo("유명 명소","1", ContextCompat.getColor(binding.root.context, R.color.custom_red)))
+        destinationlist.add(DestinationInfo("유명 명소","2",ContextCompat.getColor(binding.root.context, R.color.black)))
+        destinationlist.add(DestinationInfo("유명 명소","3",ContextCompat.getColor(binding.root.context, R.color.black)))
+        destinationlist.add(DestinationInfo("유명 명소","4", ContextCompat.getColor(binding.root.context, R.color.black)))
+        destinationlist.add(DestinationInfo("유명 명소","5",ContextCompat.getColor(binding.root.context, R.color.custom_yello)))
 
 
         val rv_destination = binding.rvDestination

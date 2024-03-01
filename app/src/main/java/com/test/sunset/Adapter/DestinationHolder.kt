@@ -1,7 +1,10 @@
 package com.test.sunset.Adapter
 
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.test.sunset.R
+import com.test.sunset.databinding.ActivityMainBinding
 import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.databinding.GridItemDestinationBinding
 
@@ -17,6 +20,7 @@ class DestinationHolder(private val binding: GridItemDestinationBinding) : Recyc
                     .setTitle("주의")
                     .setMessage("이것은 타입1번의 view 입니다.\n")
                     .show()
+
             }
 
             "2" ->  binding.view3.setOnClickListener {

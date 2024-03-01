@@ -21,6 +21,7 @@ class DestinationAdapter(private val DestinationList : List<DestinationInfo>) : 
     override fun onBindViewHolder(holder: DestinationHolder, position: Int) {
         val destinationlist = DestinationList[position]
         holder.bind(destinationlist)
+
         //binding.view3.setOnClickListener{Log.d("position",position.toString())}
         //holder.itemView.setOnClickListener{Log.d("position",position.toString())} 해당 position의 아이템을 눌렀을때 작동.
     }
