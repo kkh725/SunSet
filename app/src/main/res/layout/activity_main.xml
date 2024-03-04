@@ -12,78 +12,78 @@
     </data>
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_launcher_background"
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tv_sunrise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/tv_sunrise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:text="@{myViewModel.sunrise}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.129" />
+            android:text="@{myViewModel.sunrise}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:layout_constraintVertical_bias="0.129" />
 
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:text="@{myViewModel.sunset}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.045" />
+            android:text="@{myViewModel.sunset}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:layout_constraintVertical_bias="0.045" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_destination"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_destination"
+            android:layout_width="314dp"
+            android:layout_height="403dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sunrise"
+            app:spanCount="2"
+            tools:listitem="@layout/grid_item_destination" />
 
-        android:layout_width="314dp"
-        android:layout_height="403dp"
-        android:layout_marginVertical="20dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sunrise"
-        app:spanCount="2"
-        tools:listitem="@layout/grid_item_destination" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="317dp"
+            android:layout_height="208dp"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="158dp"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.412"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="317dp"
-        android:layout_height="208dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="158dp"
-        android:src="@mipmap/ic_launcher_round"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.412"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie"
+            android:layout_width="250dp"
+            android:layout_height="199dp"
+            android:visibility="@{myViewModel.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/hand_loading" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottie"
-        android:layout_width="250dp"
-        android:layout_height="199dp"
-        android:visibility="@{myViewModel.isLoading ? View.VISIBLE : View.GONE}"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/hand_loading" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

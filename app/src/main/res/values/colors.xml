@@ -3,5 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="custom_red">#CBD51515</color>
+
     <color name="custom_yello">#FFFF00</color>
+    <color name="custom_whiteblur">#12F7FEFF</color>
 </resources>

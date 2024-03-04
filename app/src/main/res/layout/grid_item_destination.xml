@@ -12,35 +12,29 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginBottom="8dp"
-        app:cardCornerRadius="20dp">
+        app:cardBackgroundColor="#52A0EEFF">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
 
-            <View
-                android:id="@+id/view3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@{DestinationInfo.backgroundColorResId}"
-
-                tools:layout_editor_absoluteX="-2dp"
-                tools:layout_editor_absoluteY="1dp" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
                 android:text="@{DestinationInfo.destinationinfo}"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/view3" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
