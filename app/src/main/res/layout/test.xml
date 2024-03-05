@@ -11,38 +11,27 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="197dp"
-            android:layout_height="63dp"
-            android:layout_marginTop="16dp"
-            android:text="나의 위치"
-            android:textAlignment="center"
-            android:textSize="40sp" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="88dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="8dp"
-            android:text="인천광역시"
-            android:textAlignment="center" />
+        android:orientation="vertical"
+        app:layoutDescription="@xml/test_xml_constraintlayout_scene2">
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/nestedscrollview"
+            android:id="@+id/nestedScrollView3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="-43dp"
+            tools:layout_editor_absoluteY="16dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_launcher_foreground"
+                app:layoutDescription="@xml/test_xml_constraintlayout_scene2"
                 tools:context=".MainActivity">
 
                 <TextView
@@ -74,27 +63,13 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="336dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_width="275dp"
+                    android:layout_height="202dp"
                     android:background="#59EF7575"
                     android:src="@mipmap/sunsetimg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/lottie"
-                    android:layout_width="183dp"
-                    android:layout_height="135dp"
-                    android:layout_marginTop="28dp"
-                    android:visibility="@{myViewModel.isLoading ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/animation_test" />
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/graph"
@@ -126,9 +101,31 @@
 
                 </androidx.recyclerview.widget.RecyclerView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="197dp"
+                    android:layout_height="63dp"
+                    android:layout_marginTop="28dp"
+                    android:text="나의 위치"
+                    android:textAlignment="center"
+                    android:textSize="40sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="88dp"
+                    android:layout_height="35dp"
+                    android:text="인천광역시"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
         </androidx.core.widget.NestedScrollView>
-    </LinearLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 
 
 </layout>
