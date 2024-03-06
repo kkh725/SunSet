@@ -50,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="@{`일출시각: ` + myViewModel.sunrise}"
+                    android:text="@{myViewModel.sunrise != null ? `일출시각: ` + myViewModel.sunrise : ``}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="@{`일몰시각: ` + myViewModel.sunset}"
+                    android:text="@{myViewModel.sunset != null ? `일몰시각: ` + myViewModel.sunset : ``}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
@@ -76,12 +76,11 @@
                     android:id="@+id/imageView3"
                     android:layout_width="match_parent"
                     android:layout_height="336dp"
-                    android:layout_marginTop="20dp"
                     android:background="#59EF7575"
                     android:src="@mipmap/sunsetimg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottie"
@@ -98,12 +97,13 @@
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/graph"
-                    android:layout_width="361dp"
-                    android:layout_height="163dp"
+                    android:layout_width="381dp"
+                    android:layout_height="165dp"
+                    android:layout_marginStart="3dp"
                     android:layout_marginTop="44dp"
+                    android:layout_marginEnd="3dp"
                     android:background="#52A0EEFF"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.506"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_sunrise" />
 

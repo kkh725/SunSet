@@ -51,6 +51,11 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
     implementation ("com.airbnb.android:lottie:6.4.0")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    // Glide dependency를 추가해야 함
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+
+// Glide Transformations dependency도 추가해야 함
+    implementation ("jp.wasabeef:glide-transformations:4.3.0")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

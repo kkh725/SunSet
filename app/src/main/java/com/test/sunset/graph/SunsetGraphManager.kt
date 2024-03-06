@@ -17,6 +17,7 @@ import com.github.mikephil.charting.listener.ChartTouchListener
 import com.github.mikephil.charting.listener.OnChartGestureListener
 import com.test.sunset.R
 import com.test.sunset.databinding.ActivityMainBinding
+import java.util.Calendar
 
 class SunsetGraphManager(private val binding: ActivityMainBinding,
                          private val sunset : Pair<Int,Int>,
@@ -28,15 +29,13 @@ class SunsetGraphManager(private val binding: ActivityMainBinding,
         val noonTime = noontime.first * 60 + noontime.second // 정오 시각을 분으로 변환
         val sunsetTime = (sunset.first + 12) * 60 + sunset.second // 일몰 시각을 분으로 변환
 
-        //커스텀 마커뷰를 만들어서 마커를 추가함. (터치시 마커 사용되게)
-        val markerView = CustomMarkerView(binding.root.context, R.layout.custom_marker_view)
         val lineChart = binding.graph
-        lineChart.marker = markerView
 
         //entry 추가
         val sunriseEntry = Entry(sunriseTime.toFloat(), 1.001f)
         val noonEntry = Entry(noonTime.toFloat(), 3f) // 예시로 정오 시각을 강조합니다.
         val sunsetEntry = Entry(sunsetTime.toFloat(), 1.002f)
+
 
         val entries = ArrayList<Entry>()
         entries.add(Entry(0f,0f))
@@ -74,9 +73,6 @@ class SunsetGraphManager(private val binding: ActivityMainBinding,
         val yLAxis = lineChart.axisLeft
         yLAxis.setDrawLabels(false)
 
-// 그 외의 데이터 포인트를 추가합니다.
-// 이 예시에서는 그래프가 규칙적으로 상승하고 하강하도록 설정되어 있습니다.
-
         // 그래프 그리기
         //line dataset이 데이터 그래프자체를 설정할수있는 기능.
         //line dataset은 기본적으로 y값을 출력하게되어있다.
@@ -99,7 +95,6 @@ class SunsetGraphManager(private val binding: ActivityMainBinding,
             override fun getFormattedValue(value: Float): String {
                 Log.d("value",value.toString())
                 return when (value) {
-
                     1.001F -> "일출"
                     3.0f -> "정오"
                     1.002F -> "일몰"
@@ -107,6 +102,7 @@ class SunsetGraphManager(private val binding: ActivityMainBinding,
                 }
             }
         }
+
         lineDataSet.setDrawValues(true)
         val lineData = LineData(lineDataSet)
 
@@ -114,6 +110,11 @@ class SunsetGraphManager(private val binding: ActivityMainBinding,
         description.text = "일몽일몽"
         description.textColor =  Color.parseColor("#CBD51515")
         description.typeface = Typeface.DEFAULT_BOLD
+
+
+        //커스텀 마커뷰를 만들어서 마커를 추가함. (터치시 마커 사용되게)
+        val markerView = CustomMarkerView(binding.root.context, R.layout.custom_marker_view)
+        lineChart.marker = markerView
 
         lineChart.setScaleEnabled(false)
         lineChart.setPinchZoom(true)
