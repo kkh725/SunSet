@@ -35,12 +35,11 @@ class MainActivityViewModel() : ViewModel() {
             try {
                 sunsetResult = WeatherRepository().getSunSetAPI(lat, lng)
                 val parts = sunsetResult.split(" ") // 가져온 문자열을 sunset, sunrise 로 자른다.
-                Log.e("MyViewModel", sunsetResult)
+                Log.e("MyViewModel", sunsetResult+parts[4] + parts[5])
 
                 _sunset.postValue(parts[0] + parts[1])
                 _sunrise.postValue(parts[2] + parts[3])
                 _noontime.postValue(parts[4] + parts[5])
-                Log.e("MyViewModel", splitTime(sunset.value.toString()).toString())
 
             } catch (e: Exception) {
                 // Handle error
@@ -54,10 +53,6 @@ class MainActivityViewModel() : ViewModel() {
     fun splitTime(time : String) : Pair<Int,Int>{
         var hour = time.split(":")[0].toInt()
         val min = time.split(":")[1].toInt()
-
-        if(time.split(":").contains("PM")) {
-            hour+=12
-        }
 
         return Pair(hour,min)
     }

@@ -3,6 +3,7 @@ package com.test.sunset.graph
 import android.graphics.Color
 import android.graphics.Typeface
 import android.util.Log
+import android.view.MotionEvent
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.LimitLine
@@ -12,15 +13,20 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.listener.ChartTouchListener
+import com.github.mikephil.charting.listener.OnChartGestureListener
 import com.test.sunset.R
 import com.test.sunset.databinding.ActivityMainBinding
 
-class SunsetGraphManager(private val binding: ActivityMainBinding, sunset : Int, sunrise : Int, noonTime : Int) {
+class SunsetGraphManager(private val binding: ActivityMainBinding,
+                         private val sunset : Pair<Int,Int>,
+                         private val sunrise : Pair<Int,Int>,
+                         private val noontime : Pair<Int,Int>) {
 
     fun makeSunsetGraph(){
-        val sunriseTime = 6 * 60 + 32 // 일출 시각을 분으로 변환
-        val noonTime = 13 * 60 + 10 // 정오 시각을 분으로 변환
-        val sunsetTime = 18 * 60 + 45 // 일몰 시각을 분으로 변환
+        val sunriseTime = sunrise.first * 60 + sunrise.second // 일출 시각을 분으로 변환
+        val noonTime = noontime.first * 60 + noontime.second // 정오 시각을 분으로 변환
+        val sunsetTime = (sunset.first + 12) * 60 + sunset.second // 일몰 시각을 분으로 변환
 
         //커스텀 마커뷰를 만들어서 마커를 추가함. (터치시 마커 사용되게)
         val markerView = CustomMarkerView(binding.root.context, R.layout.custom_marker_view)
@@ -109,6 +115,8 @@ class SunsetGraphManager(private val binding: ActivityMainBinding, sunset : Int,
         description.textColor =  Color.parseColor("#CBD51515")
         description.typeface = Typeface.DEFAULT_BOLD
 
+        lineChart.setScaleEnabled(false)
+        lineChart.setPinchZoom(true)
         lineChart.description = description
         lineChart.data = lineData
         lineChart.animateY(2000, Easing.EaseInCubic)
