@@ -15,15 +15,16 @@ class WeatherRepository {
     suspend fun getSunSetAPI(lat: String, lng: String): String {
         var sunset= "error"
         var sunrise = "err"
+        var noontime = "err"
         val retrofit = Retrofit.Builder().baseUrl("https://api.sunrise-sunset.org/")
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create())).build()
 
-        val WeatherApiService: OpenWeatherMapService = retrofit.create(OpenWeatherMapService::class.java)
+        val weatherApiService: OpenWeatherMapService = retrofit.create(OpenWeatherMapService::class.java)
         Log.d("post2", "11")
 
         try {
             // API 호출
-            val response: Response<SunSetResponse> = WeatherApiService.getSunset(lat, lng)
+            val response: Response<SunSetResponse> = weatherApiService.getSunset(lat, lng)
             Log.d("post2", "22")
 
             if (response.isSuccessful) {
@@ -31,6 +32,7 @@ class WeatherRepository {
                 if (sunSetResponse != null) {
                     sunset = sunSetResponse.results.sunset
                     sunrise = sunSetResponse.results.sunrise
+                    noontime = sunSetResponse.results.solarNoon
                 }
             } else {
                 Log.d("post2", "44")
@@ -43,6 +45,6 @@ class WeatherRepository {
             // 예외 처리
             Log.e("error", "Exception: ${e.message}", e)
         }
-        return "$sunset $sunrise"
+        return "$sunset $sunrise $noontime"
     }
 }

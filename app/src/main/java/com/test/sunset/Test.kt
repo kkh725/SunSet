@@ -87,9 +87,7 @@ class Test : AppCompatActivity() {
 
 //        val lineChart = binding.chart
 //
-        val sunriseTime = 6 * 60 + 32 // 일출 시각을 분으로 변환
-        val noonTime = 13 * 60 + 10 // 정오 시각을 분으로 변환
-        val sunsetTime = 18 * 60 + 45 // 일몰 시각을 분으로 변환
+
 //
 //        val markerView = CustomMarkerView(this, R.layout.custom_marker_view)
 //        lineChart.marker = markerView
@@ -150,14 +148,18 @@ class Test : AppCompatActivity() {
 //        lineChart.data = lineData
 //        lineChart.invalidate()
 
+        val sunriseTime = 6 * 60 + 32 // 일출 시각을 분으로 변환
+        val noonTime = 13 * 60 + 10 // 정오 시각을 분으로 변환
+        val sunsetTime = 18 * 60 + 45 // 일몰 시각을 분으로 변환
+
+        //커스텀 마커뷰를 만들어서 마커를 추가함. (터치시 마커 사용되게)
         val markerView = CustomMarkerView(this, R.layout.custom_marker_view)
         lineChart.marker = markerView
 
+        //entry 추가
         val sunriseEntry = Entry(sunriseTime.toFloat(), 1.001f)
         val noonEntry = Entry(noonTime.toFloat(), 3f) // 예시로 정오 시각을 강조합니다.
         val sunsetEntry = Entry(sunsetTime.toFloat(), 1.002f)
-
-// 마커뷰에 표시할 내용을 설정합니다.
 
         val entries = ArrayList<Entry>()
         entries.add(Entry(0f,0f))
@@ -204,13 +206,18 @@ class Test : AppCompatActivity() {
         //linedataset.setdrawvalues -> y값을 포인트아래에 출력시킴.
         //y값은 어차피 포인트를 강조하는데 사용되므로, 일출값을 1.001, 일몰을 1.002, 정오를 3.0으로 표시하여
         //이 y값에 따라 일출, 일몰, 정오값을 그래프에 표시한다.
+
         val lineDataSet = LineDataSet(entries, "")
         lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
-        lineDataSet.valueTextSize = 13f
-        lineDataSet.circleRadius = 3f
+        lineDataSet.lineWidth = 3f //선의 두께
+        lineDataSet.valueTextSize = 13f // 데이터의 text size
+        lineDataSet.circleRadius = 3f //포인트의 반지름
         lineDataSet.setDrawCircleHole(true) //점을 채울건지 말건지
         val colorsList = arrayListOf(Color.RED)
         lineDataSet.circleColors = colorsList
+        lineDataSet.color = Color.parseColor("#FFA1B4DC") //그래프 선의 색
+
+        //value formatter를 사용해서 일몰일출정오 시간값을 그래프위에 표시
         lineDataSet.valueFormatter = object : ValueFormatter() {
             override fun getFormattedValue(value: Float): String {
                 Log.d("value",value.toString())
