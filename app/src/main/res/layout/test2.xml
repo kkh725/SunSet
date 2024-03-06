@@ -20,7 +20,6 @@
         android:layout_height="match_parent" />
 
 
-
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="376dp"
         android:layout_height="196dp"
