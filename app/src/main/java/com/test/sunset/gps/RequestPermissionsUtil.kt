@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 //gps 위치권한을 받아오는 Class
 class RequestPermissionsUtil(private val context: Context){
     private val REQUEST_LOCATION = 1
+    //ddd
 
     /** 위치 권한 SDK 버전 29 이상**/
     @RequiresApi(Build.VERSION_CODES.Q)
