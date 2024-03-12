@@ -13,6 +13,7 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_launcher_background"
     android:orientation="vertical">
 
 
@@ -25,8 +26,11 @@
 
     <Button
         android:id="@+id/btnvt"
-        android:layout_width="37dp"
-        android:layout_height="33dp" />
+        android:layout_width="262dp"
+        android:layout_height="184dp"
+        android:background="@mipmap/opacity"
+        app:strokeWidth="10dp" />
+
     <TextView
         android:id="@+id/tvtvtv"
         android:layout_width="match_parent"
@@ -37,7 +41,8 @@
         android:id="@+id/imageView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background" />
+        android:src="@mipmap/opacity" />
+
 
 
 </LinearLayout>
