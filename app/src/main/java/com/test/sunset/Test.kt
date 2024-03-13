@@ -18,7 +18,7 @@ import jp.wasabeef.glide.transformations.BlurTransformation
 
 class Test : AppCompatActivity() {
     private lateinit var binding: com.test.sunset.databinding.Test2Binding
-
+//feature test
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
