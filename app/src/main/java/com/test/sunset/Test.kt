@@ -19,6 +19,12 @@ import jp.wasabeef.glide.transformations.BlurTransformation
 class Test : AppCompatActivity() {
     private lateinit var binding: com.test.sunset.databinding.Test2Binding
 //master branch
+
+    /**
+     * Git feature test merge 테스트입니다 @@@@@@@@@@
+     * feature/test 를 커밋/푸시 한 후에 github에서 full request한 후, master를 통해 받아오고, 다시 feature 에서 pull 해주는방식입니다.
+     * 왜 pull request 가 안되는걸까요
+     */
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
