@@ -13,11 +13,8 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_launcher_background"
     android:orientation="vertical">
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 
     <com.airbnb.lottie.LottieAnimationView
@@ -28,34 +25,24 @@
         app:lottie_loop="true"/>
 
     <Button
-        android:layout_width="37dp"
-        android:layout_height="33dp" />
+        android:id="@+id/btnvt"
+        android:layout_width="262dp"
+        android:layout_height="184dp"
+        android:background="@mipmap/opacity"
+        app:strokeWidth="10dp" />
 
-    <androidx.core.widget.NestedScrollView
+    <TextView
+        android:id="@+id/tvtvtv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        android:text="22222222222222"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/opacity" />
 
-            <!-- 이 부분에 RecyclerView를 비롯한 여러 View들을 배치하면 된다. -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-
-
-    </androidx.core.widget.NestedScrollView>
 
 
 </LinearLayout>
