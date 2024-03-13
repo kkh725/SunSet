@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.test.sunset.Adapter.DestinationAdapter
 import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.databinding.ActivityMainBinding
+import com.test.sunset.gps.RequestPermissionsUtil
 import com.test.sunset.graph.CustomMarkerView
 import com.test.sunset.graph.SunsetGraphManager
 
@@ -23,6 +24,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        RequestPermissionsUtil(this).isLocationPermitted()
+        RequestPermissionsUtil(this).requestLocation()
 
         viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
 

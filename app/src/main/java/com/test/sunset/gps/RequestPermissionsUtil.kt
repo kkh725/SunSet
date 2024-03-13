@@ -15,18 +15,20 @@ class RequestPermissionsUtil(private val context: Context){
     //ddd
 
     /** 위치 권한 SDK 버전 29 이상**/
-    @RequiresApi(Build.VERSION_CODES.Q)
+    @TargetApi(Build.VERSION_CODES.Q)
     private val permissionsLocationUpApi29Impl = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.ACCESS_BACKGROUND_LOCATION
     )
 
-    /** 위치 권한 SDK 버전 29 이하**/
-    @TargetApi(Build.VERSION_CODES.P)
+    // 위치 권한 sdk 29 이하
+    @TargetApi(Build.VERSION_CODES.Q)
     private val permissionsLocationDownApi29Impl = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.ACCESS_COARSE_LOCATION)
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_BACKGROUND_LOCATION
+    )
 
         /** 위치정보 권한 요청**/
         fun requestLocation() {
