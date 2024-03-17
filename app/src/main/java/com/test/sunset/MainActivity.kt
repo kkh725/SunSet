@@ -1,7 +1,9 @@
 package com.test.sunset
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,21 +14,31 @@ import com.test.sunset.Adapter.DestinationAdapter
 import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.databinding.ActivityMainBinding
 import com.test.sunset.gps.RequestPermissionsUtil
-import com.test.sunset.graph.CustomMarkerView
 import com.test.sunset.graph.SunsetGraphManager
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainActivityViewModel
     private lateinit var binding: ActivityMainBinding
 
+    override fun onStart() {
+        super.onStart()
+        RequestPermissionsUtil(this).requestLocation() // 위치 권한 요청
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        RequestPermissionsUtil(this).isLocationPermitted()
-        RequestPermissionsUtil(this).requestLocation()
+        //위치 허용 확인 시 위치 추적
+        if (RequestPermissionsUtil(this).isLocationPermitted()){
+            RequestPermissionsUtil(this).requestLocationUpdates()
+        }
+        RequestPermissionsUtil(this).requestLocationUpdates()
+
 
         viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
