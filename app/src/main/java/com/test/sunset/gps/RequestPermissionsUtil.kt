@@ -12,23 +12,20 @@ import androidx.core.content.ContextCompat
 //gps 위치권한을 받아오는 Class
 class RequestPermissionsUtil(private val context: Context){
     private val REQUEST_LOCATION = 1
-    //ddd
 
     /** 위치 권한 SDK 버전 29 이상**/
-    @TargetApi(Build.VERSION_CODES.Q)
+    @RequiresApi(Build.VERSION_CODES.Q)
     private val permissionsLocationUpApi29Impl = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.ACCESS_BACKGROUND_LOCATION
     )
 
-    // 위치 권한 sdk 29 이하
-    @TargetApi(Build.VERSION_CODES.Q)
+    /** 위치 권한 SDK 버전 29 이하**/
+    @TargetApi(Build.VERSION_CODES.P)
     private val permissionsLocationDownApi29Impl = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.ACCESS_COARSE_LOCATION,
-        Manifest.permission.ACCESS_BACKGROUND_LOCATION
-    )
+        Manifest.permission.ACCESS_COARSE_LOCATION)
 
         /** 위치정보 권한 요청**/
         fun requestLocation() {
