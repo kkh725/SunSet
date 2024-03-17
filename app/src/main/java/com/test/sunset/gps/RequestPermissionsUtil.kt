@@ -1,18 +1,47 @@
 package com.test.sunset.gps
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Build
+import android.os.Bundle
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+
 //gps 위치권한을 받아오는 Class
 class RequestPermissionsUtil(private val context: Context){
+
+    val locationManager: LocationManager by lazy {
+        context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    }
+    // 추가적으로 사용할 위치 정보 요청 코드
+    private val LOCATION_REQUEST_CODE = 101
     private val REQUEST_LOCATION = 1
-    //ddd
+
+    // 추가적으로 사용할 위치 정보 요청 함수
+    @SuppressLint("MissingPermission")
+    fun requestLocationUpdates() {
+        if (ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            locationManager.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER,
+                0,
+                0f,
+                locationListener
+            )
+        }
+    }
 
     /** 위치 권한 SDK 버전 29 이상**/
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -95,5 +124,30 @@ class RequestPermissionsUtil(private val context: Context){
 
             return true
         }
+
+    // 위치 정보를 수신하는 리스너
+    private val locationListener: LocationListener = object : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            // 위치가 변경되었을 때 실행되는 코드
+            Log.d("Location", "Latitude: ${location.latitude}, Longitude: ${location.longitude}")
+            // 이후 여기에서 추가적인 작업을 수행할 수 있습니다.
+        }
+
+        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+            // 위치 공급자의 상태가 변경될 때 실행되는 코드
+        }
+
+        override fun onProviderEnabled(provider: String) {
+            // 위치 공급자가 사용 가능한 상태가 될 때 실행되는 코드
+        }
+
+        override fun onProviderDisabled(provider: String) {
+            // 위치 공급자가 사용 불가능한 상태가 될 때 실행되는 코드
+        }
+    }
+    // 위치 정보 요청 중지 함수
+    fun stopLocationUpdates() {
+        locationManager.removeUpdates(locationListener)
+    }
 
 }

@@ -21,8 +21,6 @@ class Test : AppCompatActivity() {
 //master branch
 
     /**
-     * clone 후 feature test 작업입니다.
-
      */
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
