@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.test.sunset.Repository.KakaoMapsRepository
 import com.test.sunset.Repository.WeatherRepository
 import com.test.sunset.itemss.DestinationInfo
 import kotlinx.coroutines.CoroutineScope
@@ -34,8 +35,10 @@ class MainActivityViewModel() : ViewModel() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 sunsetResult = WeatherRepository().getSunSetAPI(lat, lng)
+                val Kakaoresult = KakaoMapsRepository().getRegionAPI(lat,lng)
                 val parts = sunsetResult.split(" ") // 가져온 문자열을 sunset, sunrise 로 자른다.
                 Log.e("MyViewModel", sunsetResult+parts[4] + parts[5])
+                Log.e("MyViewModel", Kakaoresult)
 
                 _sunset.postValue(parts[0] + parts[1])
                 _sunrise.postValue(parts[2] + parts[3])
@@ -50,6 +53,8 @@ class MainActivityViewModel() : ViewModel() {
             }
         }
     }
+
+
     fun splitTime(time : String) : Pair<Int,Int>{
         var hour = time.split(":")[0].toInt()
         val min = time.split(":")[1].toInt()

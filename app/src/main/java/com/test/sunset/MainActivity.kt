@@ -1,9 +1,5 @@
 package com.test.sunset
 
-import android.content.Context
-import android.graphics.Color
-import android.graphics.Typeface
-import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -50,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         //x좌표, Y좌표를 입력하면 view model 에서 일몰,일출값 수정
         //좌표값이 바뀔때마다 noontime라이브데이터값이 수정되고 그때마다 그래프 새로그린다.
-        viewModel.fetchSunset("36.720","-4.420")
+        viewModel.fetchSunset("37.8534","127.7407")
         viewModel.noontime.observe(this, Observer {  //it-> noontime의 바뀌는값
             val sunset = viewModel.splitTime(viewModel.sunset.value.toString())
             val sunrise = viewModel.splitTime(viewModel.sunrise.value.toString())

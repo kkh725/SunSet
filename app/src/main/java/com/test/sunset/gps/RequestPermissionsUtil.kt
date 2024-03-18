@@ -23,7 +23,6 @@ class RequestPermissionsUtil(private val context: Context){
         context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
     }
     // 추가적으로 사용할 위치 정보 요청 코드
-    private val LOCATION_REQUEST_CODE = 101
     private val REQUEST_LOCATION = 1
 
     // 추가적으로 사용할 위치 정보 요청 함수
@@ -129,7 +128,7 @@ class RequestPermissionsUtil(private val context: Context){
     private val locationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
             // 위치가 변경되었을 때 실행되는 코드
-            Log.d("Location", "Latitude: ${location.latitude}, Longitude: ${location.longitude}")
+            Log.d("Location_Lat_Lon", "Latitude: ${location.latitude}, Longitude: ${location.longitude}")
             // 이후 여기에서 추가적인 작업을 수행할 수 있습니다.
         }
 

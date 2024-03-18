@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Sunset</string>
+    <string name="kakao_app_key">af9db06cea754b2ae3978c3f40a2f69f</string>
 </resources>
