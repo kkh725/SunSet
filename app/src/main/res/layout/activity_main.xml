@@ -19,8 +19,8 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="197dp"
-            android:layout_height="63dp"
+            android:layout_width="173dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="나의 위치"
             android:textAlignment="center"
@@ -28,8 +28,8 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="174dp"
-            android:layout_height="34dp"
+            android:layout_width="197dp"
+            android:layout_height="31dp"
             android:layout_marginTop="8dp"
             android:text="@{myViewModel.region}"
             android:textAlignment="center" />
@@ -77,7 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="336dp"
                     android:background="#59EF7575"
-                    android:src="@mipmap/sunsetimg"
+                    android:src="@drawable/ic_launcher_foreground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

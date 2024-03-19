@@ -1,11 +1,8 @@
-package com.test.sunset.Adapter
+package com.test.sunset.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.test.sunset.R
 import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.databinding.GridItemDestinationBinding
 

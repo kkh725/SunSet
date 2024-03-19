@@ -1,10 +1,7 @@
-package com.test.sunset.Adapter
+package com.test.sunset.adapter
 
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.test.sunset.R
-import com.test.sunset.databinding.ActivityMainBinding
 import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.databinding.GridItemDestinationBinding
 
