@@ -6,13 +6,11 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
-import com.test.sunset.adapter.DestinationAdapter
+import com.test.sunset.adapter2.DestinationAdapter
 import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.databinding.ActivityMainBinding
 import com.test.sunset.gps.RequestPermissionsUtil
 import com.test.sunset.graph.SunsetGraphManager
-import com.test.sunset.itemss.TourData
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainActivityViewModel
@@ -61,48 +59,12 @@ class MainActivity : AppCompatActivity() {
 
         val destinationlist: MutableList<DestinationInfo> = mutableListOf()
 
-        destinationlist.add(
-            DestinationInfo(
-                "유명 명소",
-                "1",
-                ContextCompat.getColor(binding.root.context, R.color.custom_red)
-            )
-        )
-        destinationlist.add(
-            DestinationInfo(
-                "유명 명소",
-                "2",
-                ContextCompat.getColor(binding.root.context, R.color.black)
-            )
-        )
-        destinationlist.add(
-            DestinationInfo(
-                "유명 명소",
-                "3",
-                ContextCompat.getColor(binding.root.context, R.color.custom_yello)
-            )
-        )
-        destinationlist.add(
-            DestinationInfo(
-                "유명 명소",
-                "4",
-                ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)
-            )
-        )
-        destinationlist.add(
-            DestinationInfo(
-                "유명 명소",
-                "5",
-                ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)
-            )
-        )
-        destinationlist.add(
-            DestinationInfo(
-                "유명 명소",
-                "1",
-                ContextCompat.getColor(binding.root.context, R.color.custom_red)
-            )
-        )
+        destinationlist.add(DestinationInfo("유명 명소","4", ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
+        destinationlist.add(DestinationInfo("유명 명소","5",ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
+        destinationlist.add(DestinationInfo("유명 명소","1", ContextCompat.getColor(binding.root.context, R.color.custom_red)))
+        destinationlist.add(DestinationInfo("유명 명소","4", ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
+        destinationlist.add(DestinationInfo("유명 명소","5",ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
+        destinationlist.add(DestinationInfo("유명 명소","1", ContextCompat.getColor(binding.root.context, R.color.custom_red)))
 
         rv_destination.adapter = DestinationAdapter(destinationlist)
 

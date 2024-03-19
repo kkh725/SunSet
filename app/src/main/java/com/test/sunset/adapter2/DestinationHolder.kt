@@ -1,4 +1,4 @@
-package com.test.sunset.adapter
+package com.test.sunset.adapter2
 
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView

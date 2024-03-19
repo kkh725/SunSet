@@ -3,16 +3,22 @@ package com.test.sunset
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import com.test.sunset.adapter2.NearByTourAdapter
+import com.test.sunset.databinding.ActivityRecommendTourRegionBinding
+import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.itemss.NearByTourInfo
 import com.test.sunset.itemss.TourData
 
 class RecommendTourRegion : AppCompatActivity() {
+    private lateinit var binding: ActivityRecommendTourRegionBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recommend_tour_region)
+        binding = ActivityRecommendTourRegionBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val tourInfoList = mutableListOf<NearByTourInfo>()
+        val tourInfoList : MutableList<NearByTourInfo> = mutableListOf()
 
         val jsonread = assets.open("tourdata.json").reader().readText()
         Log.d("JSON STR", jsonread)
@@ -24,13 +30,18 @@ class RecommendTourRegion : AppCompatActivity() {
 
                 if (record.소재지도로명주소.contains("강원도")){ // 실제로는 현재위치를 통해 추적할것
                     Log.d("관광지명", record.관광지명)
-                    val tourelement = NearByTourInfo(record.관광지명)
+                    val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소)
                     tourInfoList.add(tourelement)
-                    Log.d("관광지명", tourInfoList[1].관광지명)
                 }
                 // 필요한 정보들을 원하는 방식으로 처리합니다.
             }
         }
+        for (i in tourInfoList){
+            Log.d("dd",i.관광지명)
+        }
+        val rv_nearbytour = binding.recyclerView
+        rv_nearbytour.layoutManager = LinearLayoutManager(this)
+        rv_nearbytour.adapter = NearByTourAdapter(tourInfoList)
     }
     //gson 라이브러리를 사용해서 json문자열을 TourData객체로 변환하는 함수.
     private fun parseJsonToTourData(jsonString: String): TourData? {

@@ -1,4 +1,4 @@
-package com.test.sunset.adapter
+package com.test.sunset.adapter2
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

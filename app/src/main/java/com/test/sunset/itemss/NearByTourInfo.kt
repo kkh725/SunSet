@@ -2,6 +2,7 @@ package com.test.sunset.itemss
 
 class NearByTourInfo (
     val 관광지명: String="",
+    val 소재지지번주소: String="",
     val 경도: String ="",
     val 위도: String ="",
     val 공공편익시설정보: String="",
@@ -12,7 +13,6 @@ class NearByTourInfo (
     val 데이터기준일자: String="",
     val 면적: String="",
     val 소재지도로명주소: String="",
-    val 소재지지번주소: String="",
     val 수용인원수: String="",
     val 숙박시설정보: String="",
     val 운동및오락시설정보: String="",
