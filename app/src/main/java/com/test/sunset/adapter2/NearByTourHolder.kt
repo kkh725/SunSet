@@ -25,10 +25,11 @@ class NearByTourHolder(
             view.findViewById<TextView>(R.id.tv_call).text = nearByTourInfo.관리기관전화번호
             view.findViewById<TextView>(R.id.tv_info).text = nearByTourInfo.관광지소개
 
-            val alertDialogBuilder = AlertDialog.Builder(context,R.style.CustomAlertDialog)
+            val alertDialogBuilder = AlertDialog.Builder(context, R.style.CustomAlertDialog)
                 .setView(view)
             val alertDialog = alertDialogBuilder.create()
             alertDialog.show()
         }
     }
 }
+
