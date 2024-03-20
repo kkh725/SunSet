@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 
+    id ("kotlin-kapt") // Add this line to apply the Kotlin kapt plugin
+
 }
 
 android {
@@ -56,6 +58,10 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 // Glide Transformations dependency도 추가해야 함
     implementation ("jp.wasabeef:glide-transformations:4.3.0")
+
+    //glide
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.0")
 
 
     implementation("androidx.core:core-ktx:1.12.0")

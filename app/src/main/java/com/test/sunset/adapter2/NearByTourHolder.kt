@@ -2,8 +2,10 @@ package com.test.sunset.adapter2
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.test.sunset.R
 import com.test.sunset.databinding.TourRegionItemBinding
@@ -15,6 +17,8 @@ class NearByTourHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(nearByTourInfo: NearByTourInfo) {
         binding.nearByTourDataInfo = nearByTourInfo
+
+        binding.imageView7.setBackgroundResource(nearByTourInfo.imgResourceId)
 
         itemView.setOnClickListener {
 

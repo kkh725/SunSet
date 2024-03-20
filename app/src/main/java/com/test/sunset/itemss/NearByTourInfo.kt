@@ -1,15 +1,17 @@
 package com.test.sunset.itemss
 
+import com.test.sunset.R
+
 class NearByTourInfo (
     val 관광지명: String="",
     val 소재지지번주소: String="",
     val 관리기관전화번호: String="",
     val 관광지소개: String="",
+    val imgResourceId: Int,
     val 경도: String ="",
     val 위도: String ="",
     val 공공편익시설정보: String="",
     val 관광지구분: String="",
-
     val 관리기관명: String="",
     val 데이터기준일자: String="",
     val 면적: String="",

@@ -27,14 +27,23 @@ class RecommendTourRegion : AppCompatActivity() {
         val jsonread = assets.open("tourdata.json").reader().readText()
         Log.d("JSON STR", jsonread)
 
+        val imageMap = mapOf(
+            "일제 경성호국신사 계단(108계단)" to R.drawable.city_img,
+            "찬바람재" to R.drawable.sunsetimg,
+            "전쟁기념관" to R.drawable.ic_launcher_foreground,
+            // 필요한 만큼 계속 추가
+        )
+
         //gson 라이브러리를 사용해서 json문자열을 TourData객체로 변환하는 함수.
         val tourdata = parseJsonToTourData(jsonread)
         if (tourdata!= null){
             for (record in tourdata.records){
 
                 if (record.소재지도로명주소.contains("강원도")){ // 실제로는 현재위치를 통해 추적할것
+                    //관광지명이 있을경우 지정한이미지. 없을경우 기본이미지
+                    val imgResId = imageMap[record.관광지명] ?: R.drawable.ic_launcher_background
                     Log.d("관광지명", record.관광지명)
-                    val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개)
+                    val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개,imgResId)
                     tourInfoList.add(tourelement)
                 }
                 // 필요한 정보들을 원하는 방식으로 처리합니다.

@@ -9,6 +9,7 @@
             type="com.test.sunset.itemss.NearByTourInfo" />
     </data>
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="match_parent"
@@ -30,7 +31,6 @@
                 android:id="@+id/imageView7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#DC9C4E"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +43,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="@{NearByTourDataInfo.관광지명}"
+                android:textColor="@color/white"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.029"

@@ -1,12 +1,18 @@
 package com.test.sunset
 
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.gson.Gson
 import com.test.sunset.adapter2.NearByTourAdapter
 import com.test.sunset.databinding.ActivityAllTourRecommendBinding
@@ -40,13 +46,22 @@ class AllTourRecommend : AppCompatActivity() {
 
         jsonread = assets.open("tourdata.json").reader().readText()
         Log.d("JSON STR", jsonread)
+        val imageMap = mapOf(
+            "일제 경성호국신사 계단(108계단)" to R.drawable.city_img,
+            "찬바람재" to R.drawable.sunsetimg,
+            "옛 남영동 대공분실(민주인권기념관)" to R.drawable.city2,
+            "옛 용산공설시장(현 남영아케이드)" to R.drawable.night,
+            "전쟁기념관" to R.drawable.city_img,
+            // 필요한 만큼 계속 추가
+        )
 
         //모든 여행지를 입력해넣음
 
         tourdata = parseJsonToTourData(jsonread)!!
         for (record in tourdata.records){
+            val imgResId = imageMap[record.관광지명] ?: R.drawable.ic_launcher_background
 
-                val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개)
+                val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개,imgResId)
                 AllTourInfoList.add(tourelement)
         }
 
@@ -71,11 +86,12 @@ class AllTourRecommend : AppCompatActivity() {
                     for (record in tourdata.records) {
 
                         if (record.관광지명.contains(s.toString())) {
+                            val imgResId = imageMap[record.관광지명] ?: R.drawable.ic_launcher_background
                             val tourelement = NearByTourInfo(
                                 record.관광지명,
                                 record.소재지지번주소,
                                 record.관리기관전화번호,
-                                record.관광지소개
+                                record.관광지소개,imgResId
                             )
                             filteredList.add(tourelement)
                         }
@@ -84,7 +100,8 @@ class AllTourRecommend : AppCompatActivity() {
                 }
                 else{
                         for (record in tourdata.records){
-                            val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개)
+                            val imgResId = imageMap[record.관광지명] ?: R.drawable.ic_launcher_background
+                            val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개,imgResId)
                             filteredList.add(tourelement)
                         }
                     }
@@ -94,7 +111,11 @@ class AllTourRecommend : AppCompatActivity() {
 
         })
         rv_nearbytour.adapter = adapter
+
+
     }
+
+
 
     //gson 라이브러리를 사용해서 json문자열을 TourData객체로 변환하는 함수.
 
