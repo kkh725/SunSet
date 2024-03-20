@@ -41,7 +41,7 @@ class RecommendTourRegion : AppCompatActivity() {
 
                 if (record.소재지도로명주소.contains("강원도")){ // 실제로는 현재위치를 통해 추적할것
                     //관광지명이 있을경우 지정한이미지. 없을경우 기본이미지
-                    val imgResId = imageMap[record.관광지명] ?: R.drawable.ic_launcher_background
+                    val imgResId = imageMap[record.관광지명] ?: R.drawable.sunsetimg
                     Log.d("관광지명", record.관광지명)
                     val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개,imgResId)
                     tourInfoList.add(tourelement)

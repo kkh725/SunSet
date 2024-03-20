@@ -59,7 +59,7 @@ class AllTourRecommend : AppCompatActivity() {
 
         tourdata = parseJsonToTourData(jsonread)!!
         for (record in tourdata.records){
-            val imgResId = imageMap[record.관광지명] ?: R.drawable.ic_launcher_background
+            val imgResId = imageMap[record.관광지명] ?: R.drawable.night
 
                 val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개,imgResId)
                 AllTourInfoList.add(tourelement)
@@ -86,7 +86,7 @@ class AllTourRecommend : AppCompatActivity() {
                     for (record in tourdata.records) {
 
                         if (record.관광지명.contains(s.toString())) {
-                            val imgResId = imageMap[record.관광지명] ?: R.drawable.ic_launcher_background
+                            val imgResId = imageMap[record.관광지명] ?: R.drawable.night
                             val tourelement = NearByTourInfo(
                                 record.관광지명,
                                 record.소재지지번주소,
