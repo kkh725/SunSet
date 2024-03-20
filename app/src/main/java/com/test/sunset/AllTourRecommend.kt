@@ -19,7 +19,9 @@ class AllTourRecommend : AppCompatActivity() {
 
     private lateinit var binding: ActivityAllTourRecommendBinding
     private lateinit var AllTourInfoList : MutableList<NearByTourInfo>
+    private lateinit var Emptylist : MutableList<NearByTourInfo>
     private lateinit var adapter: NearByTourAdapter
+    private lateinit var filteredList: MutableList<NearByTourInfo>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,6 +36,7 @@ class AllTourRecommend : AppCompatActivity() {
         binding.textInputLayout.hint = "${String(Character.toChars(unicode))} 관광지명 검색"
 
         AllTourInfoList= mutableListOf()
+        Emptylist= mutableListOf()
 
         val jsonread = assets.open("tourdata.json").reader().readText()
         Log.d("JSON STR", jsonread)
@@ -46,10 +49,23 @@ class AllTourRecommend : AppCompatActivity() {
 
                     val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개)
                     AllTourInfoList.add(tourelement)
+                Log.d("자료형",record::class.simpleName.toString())
+                Log.d("자료형",tourelement::class.simpleName.toString())
+
+
+                    if (record.관광지명.contains("일")){
+                        val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개)
+                        Emptylist.add(tourelement)
+
+                        Log.d("list",Emptylist.size.toString())
+                    }
             }
+
         }
+
         for (i in AllTourInfoList){
-            Log.d("dd",i.관광지명)
+            Log.d("자료형 i",i::class.simpleName.toString())
+
         }
         val rv_nearbytour = binding.recyclerView
         rv_nearbytour.layoutManager = LinearLayoutManager(this)
@@ -69,8 +85,53 @@ class AllTourRecommend : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                adapter.filter(s.toString())
-                Log.d("ddd",s.toString())
+
+                filteredList = mutableListOf()
+                if (!s.isNullOrBlank()) { // s가 널이 아니고 빈 문자열이 아닌 경우에만 필터링 수행
+                    filteredList.addAll(AllTourInfoList)
+                    filteredList.clear()
+                    val tourdata = parseJsonToTourData(jsonread)
+                    if (tourdata!= null){
+                        for (record in tourdata.records){
+                            Log.d("자료형",record::class.simpleName.toString())
+                            Log.d("자료형2",record.관광지명::class.simpleName.toString())
+                            Log.d("자료형3",AllTourInfoList::class.simpleName.toString())
+                            Log.d("자료형3",filteredList::class.simpleName.toString())
+
+                            Log.d("자료형4",AllTourInfoList.size.toString())
+
+                            //레코드로 순회해서 삽입하면 되는데 어째서 list로 순회하면 안되는지 확인
+                            //아마 자료형의 문제일것같은데 어째서 안되는지?
+                            //왜 Alltourinfolist[1]은 출력이안되는지?
+
+                            if (record.관광지명.contains(s.toString())){
+                                val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개)
+                                filteredList.add(tourelement)
+                                Log.d("list",Emptylist.size.toString())
+                            }
+                        }
+                        adapter.setFilteredList(filteredList)
+                    }
+                }
+                else{
+                    val tourdata = parseJsonToTourData(jsonread)
+                    if (tourdata!= null){
+                        for (record in tourdata.records){
+                            val tourelement = NearByTourInfo(record.관광지명,record.소재지지번주소,record.관리기관전화번호,record.관광지소개)
+                            filteredList.add(tourelement)
+                        }
+                    }
+
+                }
+                for (i in filteredList){
+                    Log.d("dd 필터리스트의 관광지명", i.관광지명)
+
+                }
+
+
+                adapter.setFilteredList(filteredList)
+
+                adapter.notifyDataSetChanged()
             }
 
         })

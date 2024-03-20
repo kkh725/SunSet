@@ -4,13 +4,14 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.test.sunset.databinding.TourRegionItemBinding
 import com.test.sunset.itemss.NearByTourInfo
 
-class NearByTourAdapter(private var nearByTourInfolist:  List<NearByTourInfo>, private val context: Context) : RecyclerView.Adapter<NearByTourHolder>() {
+class NearByTourAdapter(private var nearByTourInfolist:  MutableList<NearByTourInfo>, private val context: Context) : RecyclerView.Adapter<NearByTourHolder>() {
     private lateinit var  binding: TourRegionItemBinding
+    private var filteredList: MutableList<NearByTourInfo> = ArrayList() // MutableList로 변경
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NearByTourHolder {
         binding = TourRegionItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return NearByTourHolder(binding,context)
@@ -27,40 +28,30 @@ class NearByTourAdapter(private var nearByTourInfolist:  List<NearByTourInfo>, p
     override fun getItemCount(): Int {
         return nearByTourInfolist.size
     }
-
-    private fun setItems(newItems: List<NearByTourInfo>) {
-        this.nearByTourInfolist = newItems
-        notifyDataSetChanged()
+    fun setFilteredList(filteredList: MutableList<NearByTourInfo>) {
+        this.nearByTourInfolist.clear() // 필터링된 목록을 초기화
+        this.nearByTourInfolist.addAll(filteredList) // 새로운 목록으로 필터링된 목록을 설정
+        notifyDataSetChanged() // 변경된 목록을 RecyclerView에 반영
     }
 
+    // 필터링 함수는 유지됨
     fun filter(query: String) {
-        var filteredList : MutableList<NearByTourInfo> = mutableListOf()
+        filteredList.clear()
+       if (query.isBlank()){
+           filteredList.addAll(nearByTourInfolist) // 변경된 부분: 필터링되지 않은 전체 목록을 추가
+           Log.d("dd",filteredList.size.toString())
 
-            if (query.isBlank()) {
-            // 쿼리가 비어있으면 모든 항목을 보여줍니다.
-            filteredList = nearByTourInfolist.toMutableList()
-        }
-            else {
-            // 쿼리가 비어있지 않으면 적절히 필터링합니다.
+       }
+        else{
+           Log.d("dd",query)
             for (i in nearByTourInfolist){
-                Log.d("item",i.관광지명)
-                Log.d("item",query)
                 if (i.관광지명.contains(query)){
                     filteredList.add(i)
-                    Log.d("item","yes!!")
+                    Log.d("dd",filteredList.size.toString())
+
                 }
-//                else{
-//                    filteredList.add(i)
-//                }
             }
-
-        }
-        Log.d("itemsize",nearByTourInfolist[0].관광지명)
-        Log.d("itemsize",filteredList.size.toString())
-
-        // 필터링된 목록을 적용합니다.
-        setItems(filteredList)
+       }
+        setFilteredList(filteredList)
     }
-
-
 }
