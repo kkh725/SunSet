@@ -30,5 +30,8 @@ class NearByTourAdapter(private val nearByTourInfolist:  List<NearByTourInfo>,pr
         return nearByTourInfolist.size
     }
 
+    fun setItem(tourList : List<NearByTourInfo>){
+    }
+
 
 }
