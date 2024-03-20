@@ -10,7 +10,6 @@ import com.test.sunset.itemss.NearByTourInfo
 
 class NearByTourAdapter(private var nearByTourInfolist:  MutableList<NearByTourInfo>, private val context: Context) : RecyclerView.Adapter<NearByTourHolder>() {
     private lateinit var  binding: TourRegionItemBinding
-    private var filteredList: MutableList<NearByTourInfo> = ArrayList() // MutableList로 변경
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NearByTourHolder {
         binding = TourRegionItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -34,24 +33,4 @@ class NearByTourAdapter(private var nearByTourInfolist:  MutableList<NearByTourI
         notifyDataSetChanged() // 변경된 목록을 RecyclerView에 반영
     }
 
-    // 필터링 함수는 유지됨
-    fun filter(query: String) {
-        filteredList.clear()
-       if (query.isBlank()){
-           filteredList.addAll(nearByTourInfolist) // 변경된 부분: 필터링되지 않은 전체 목록을 추가
-           Log.d("dd",filteredList.size.toString())
-
-       }
-        else{
-           Log.d("dd",query)
-            for (i in nearByTourInfolist){
-                if (i.관광지명.contains(query)){
-                    filteredList.add(i)
-                    Log.d("dd",filteredList.size.toString())
-
-                }
-            }
-       }
-        setFilteredList(filteredList)
-    }
 }
