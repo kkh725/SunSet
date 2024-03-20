@@ -59,12 +59,12 @@ class MainActivity : AppCompatActivity() {
 
         val destinationlist: MutableList<DestinationInfo> = mutableListOf()
 
-        destinationlist.add(DestinationInfo("유명 명소","4", ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
-        destinationlist.add(DestinationInfo("유명 명소","5",ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
-        destinationlist.add(DestinationInfo("유명 명소","1", ContextCompat.getColor(binding.root.context, R.color.custom_red)))
-        destinationlist.add(DestinationInfo("유명 명소","4", ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
-        destinationlist.add(DestinationInfo("유명 명소","5",ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
-        destinationlist.add(DestinationInfo("유명 명소","1", ContextCompat.getColor(binding.root.context, R.color.custom_red)))
+        destinationlist.add(DestinationInfo("내 주변 관광명소","2", ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
+        destinationlist.add(DestinationInfo("전국 관광명소","1",ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
+        destinationlist.add(DestinationInfo("-","1", ContextCompat.getColor(binding.root.context, R.color.custom_red)))
+        destinationlist.add(DestinationInfo("-","2", ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
+        destinationlist.add(DestinationInfo("-","1",ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
+        destinationlist.add(DestinationInfo("-","2", ContextCompat.getColor(binding.root.context, R.color.custom_red)))
 
         rv_destination.adapter = DestinationAdapter(destinationlist)
 
