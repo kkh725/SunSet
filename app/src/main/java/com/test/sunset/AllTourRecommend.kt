@@ -2,6 +2,8 @@ package com.test.sunset
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,10 +13,13 @@ import com.test.sunset.databinding.ActivityAllTourRecommendBinding
 import com.test.sunset.databinding.ActivityRecommendTourRegionBinding
 import com.test.sunset.itemss.NearByTourInfo
 import com.test.sunset.itemss.TourData
+import java.util.Locale.filter
 
 class AllTourRecommend : AppCompatActivity() {
 
     private lateinit var binding: ActivityAllTourRecommendBinding
+    private lateinit var AllTourInfoList : MutableList<NearByTourInfo>
+    private lateinit var adapter: NearByTourAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,7 +33,7 @@ class AllTourRecommend : AppCompatActivity() {
         binding.textView4.text = "${String(Character.toChars(fireWorkUnicode))} 전국 관광명소"
         binding.textInputLayout.hint = "${String(Character.toChars(unicode))} 관광지명 검색"
 
-        val AllTourInfoList : MutableList<NearByTourInfo> = mutableListOf()
+        AllTourInfoList= mutableListOf()
 
         val jsonread = assets.open("tourdata.json").reader().readText()
         Log.d("JSON STR", jsonread)
@@ -48,10 +53,29 @@ class AllTourRecommend : AppCompatActivity() {
         }
         val rv_nearbytour = binding.recyclerView
         rv_nearbytour.layoutManager = LinearLayoutManager(this)
-        rv_nearbytour.adapter = NearByTourAdapter(AllTourInfoList,this)
-        Log.d("str",AllTourInfoList.size.toString())
-    }
+        adapter = NearByTourAdapter(AllTourInfoList,this)
 
+
+        Log.d("str",AllTourInfoList.size.toString())
+
+        //textinputedittext에 텍스트의 변환을 감지하는 리스너 오버라이딩
+        binding.textInputEditText.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                adapter.filter(s.toString())
+                Log.d("ddd",s.toString())
+            }
+
+        })
+        rv_nearbytour.adapter = adapter
+    }
 
     //gson 라이브러리를 사용해서 json문자열을 TourData객체로 변환하는 함수.
 
