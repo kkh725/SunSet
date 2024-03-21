@@ -51,9 +51,9 @@ class MainActivity : AppCompatActivity() {
             val sunrise = viewModel.splitTime(viewModel.sunrise.value.toString())
             Log.d("sunrise", sunset.toString())
             val noontime = viewModel.splitTime(viewModel.noontime.value.toString())
-            SunsetGraphManager(binding, sunset, sunrise, noontime).makeSunsetGraph()
+//            SunsetGraphManager(binding, sunset, sunrise, noontime).makeSunsetGraph()
         })
-
+        SunsetGraphManager(binding, Pair(18,30), Pair(6,30),Pair(12,30)).makeSunsetGraph()
 
         val rv_destination = binding.rvDestination
 

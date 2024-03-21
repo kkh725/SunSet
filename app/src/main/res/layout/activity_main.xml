@@ -14,8 +14,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#5BE84848"
         android:gravity="center_horizontal"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView3"
@@ -102,7 +103,7 @@
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="44dp"
                     android:layout_marginEnd="3dp"
-                    android:background="#52A0EEFF"
+                    android:background="#75FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_sunrise" />

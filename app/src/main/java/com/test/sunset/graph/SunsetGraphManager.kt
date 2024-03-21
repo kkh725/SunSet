@@ -13,11 +13,8 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.listener.ChartTouchListener
-import com.github.mikephil.charting.listener.OnChartGestureListener
 import com.test.sunset.R
 import com.test.sunset.databinding.ActivityMainBinding
-import java.util.Calendar
 
 class SunsetGraphManager(private val binding: ActivityMainBinding,
                          private val sunset : Pair<Int,Int>,
@@ -25,9 +22,10 @@ class SunsetGraphManager(private val binding: ActivityMainBinding,
                          private val noontime : Pair<Int,Int>) {
 
     fun makeSunsetGraph(){
+
         val sunriseTime = sunrise.first * 60 + sunrise.second // 일출 시각을 분으로 변환
         val noonTime = noontime.first * 60 + noontime.second // 정오 시각을 분으로 변환
-        val sunsetTime = (sunset.first + 12) * 60 + sunset.second // 일몰 시각을 분으로 변환
+        val sunsetTime = sunset.first * 60 + sunset.second // 일몰 시각을 분으로 변환
 
         val lineChart = binding.graph
 
@@ -48,9 +46,11 @@ class SunsetGraphManager(private val binding: ActivityMainBinding,
         //왼쪽 y축 limit 라인이라는게 따로 차트에 선을 그리는작업인듯
         val limitLine = LimitLine(1f, "") // 선의 위치를 yValue로 설정합니다. 그리고 레이블설정. 설명
         limitLine.lineWidth = 3f //선의 두께
+        limitLine.lineColor = R.color.white
         limitLine.labelPosition = LimitLine.LimitLabelPosition.RIGHT_BOTTOM //선의 오른쪽아래에 레이블추가
         limitLine.textSize = 8f //레이블텍스트사이즈
         yAxis.addLimitLine(limitLine)
+
 
         //x축의 데이터표시값 포매팅
         val xAxis = lineChart.xAxis
@@ -84,11 +84,11 @@ class SunsetGraphManager(private val binding: ActivityMainBinding,
         lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
         lineDataSet.lineWidth = 3f //선의 두께
         lineDataSet.valueTextSize = 10f // 데이터의 text size
-        lineDataSet.circleRadius = 3f //포인트의 반지름
+        lineDataSet.circleRadius = 3.5f //포인트의 반지름
         lineDataSet.setDrawCircleHole(true) //점을 채울건지 말건지
-        val colorsList = arrayListOf(Color.RED)
+        val colorsList = arrayListOf(Color.BLACK)
         lineDataSet.circleColors = colorsList
-        lineDataSet.color = Color.parseColor("#FFA1B4DC") //그래프 선의 색
+        lineDataSet.color = Color.parseColor("#000000") //그래프 선의 색
 
         //value formatter를 사용해서 일몰일출정오 시간값을 그래프위에 표시
         lineDataSet.valueFormatter = object : ValueFormatter() {

@@ -46,7 +46,7 @@ class CustomMarkerView(context: Context, layoutResource: Int) : MarkerView(conte
         val timeText = String.format("%02d:%02d", hour, minute)
 
         ("시각: $timeText").also { textView.text = it }
-        imageView.setImageResource(R.color.custom_yello)
+        imageView.setImageResource(R.drawable.ic_launcher_foreground)
         super.refreshContent(e, highlight)
     }
 
