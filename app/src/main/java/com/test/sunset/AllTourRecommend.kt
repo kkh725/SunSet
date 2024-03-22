@@ -11,8 +11,6 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.gson.Gson
 import com.test.sunset.adapter2.NearByTourAdapter
 import com.test.sunset.databinding.ActivityAllTourRecommendBinding

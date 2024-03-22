@@ -49,6 +49,7 @@ class WeatherRepository {
         return "$sunset $sunrise $noontime"
     }
 
+    //utc 시간을 현재에맞게 utc+9시간으로 변환하는 함수
     fun amtopm(timeString : String) :String{
 
         // 시간 문자열을 공백(" ")을 기준으로 나누어 시, 분, 초, 오전/오후를 추출합니다.
@@ -68,6 +69,10 @@ class WeatherRepository {
             // 오후인 경우 AM을 PM으로 변경합니다.
             if (amPm == "AM") {
                 amPm = "PM"
+            }
+            else{
+                amPm = "AM"
+
             }
         }
         val adjustedTimeString = String.format("%d:%02d:%02d %s", adjustedHour, minute, second, amPm)

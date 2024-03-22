@@ -1,15 +1,22 @@
 package com.test.sunset
 
+import android.content.Context
 import android.location.Location
 import android.util.Log
+import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.Glide
 import com.test.sunset.Repository.KakaoMapsRepository
 import com.test.sunset.Repository.WeatherRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.util.Calendar
+import java.util.Locale
 
 class MainActivityViewModel() : ViewModel() {
 
@@ -72,6 +79,32 @@ class MainActivityViewModel() : ViewModel() {
         val min = time.split(":")[1].toInt()
 
         return Pair(hour,min)
+    }
+
+    fun changeImage(context: Context, imageView: ImageView) {
+        val currentTime = Calendar.getInstance().time
+        val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
+        val formattedTime = sdf.format(currentTime)
+
+        val sunriseTime = "06:30" // 예시: 일출 시간
+        val sunsetTime = "18:30" // 예시: 일몰 시간
+
+        if (isTimeInRange(formattedTime,sunriseTime,sunsetTime)){
+            Glide.with(context).
+            load(R.drawable.sunrise_img).
+            fitCenter().
+            into(imageView)
+        }
+        else{
+            Glide.with(context).
+            load(R.drawable.moon_img).
+            fitCenter().
+            into(imageView)
+        }
+    }
+
+    private fun isTimeInRange(time: String, startTime: String, endTime: String): Boolean {
+        return time in startTime..endTime
     }
 
 

@@ -3,9 +3,11 @@ package com.test.sunset
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.test.sunset.adapter2.DestinationAdapter
 import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.databinding.ActivityMainBinding
@@ -16,6 +18,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainActivityViewModel
     private lateinit var binding: ActivityMainBinding
 
+    override fun onStart() {
+        RequestPermissionsUtil(this, viewModel).requestLocation()
+        super.onStart()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,18 +32,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel.loadingStart()
+        RequestPermissionsUtil(this, viewModel).requestLocation()
 
         //위치 허용 확인 시 위치 추적
         if (RequestPermissionsUtil(this, viewModel).isLocationPermitted()) {
             RequestPermissionsUtil(this, viewModel).requestLocationUpdates()
         }
-        RequestPermissionsUtil(this, viewModel).requestLocationUpdates()
+        else{
+            RequestPermissionsUtil(this, viewModel).requestLocationUpdates()
+            Log.d("MainActivity", "위치 권한 거부")
+        }
 
 
         //데이터 바인딩을 사용하기 때문에 옵저버 사용x
         //mvvm에서는 그러면 주로 databinding, live data, viewmodel, repository, data.등이 어우러져 사용된다.
 
-
+        viewModel.changeImage(binding.root.context,binding.imageView3)
         binding.lifecycleOwner = this
 
         //좌표가 바뀔때마다 리스너가 호출되어 뷰모델의 위경도를 바꾼다.
@@ -49,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.noontime.observe(this, Observer {  //it-> noontime의 바뀌는값
             val sunset = viewModel.splitTime(viewModel.sunset.value.toString())
             val sunrise = viewModel.splitTime(viewModel.sunrise.value.toString())
-            Log.d("sunrise", sunset.toString())
             val noontime = viewModel.splitTime(viewModel.noontime.value.toString())
             SunsetGraphManager(binding, sunset, sunrise, noontime).makeSunsetGraph()
         })
@@ -68,6 +78,24 @@ class MainActivity : AppCompatActivity() {
         rv_destination.adapter = DestinationAdapter(destinationlist)
 
 
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            // When the window gains focus, hide the system UI
+            window.decorView.systemUiVisibility = (
+                    View.SYSTEM_UI_FLAG_IMMERSIVE
+                            // Set the content to appear under the system bars so that the content
+                            // doesn't resize when the system bars hide and show.
+                            or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            // Hide the nav bar and status bar
+                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_FULLSCREEN
+                    )
+        }
     }
 
     }
