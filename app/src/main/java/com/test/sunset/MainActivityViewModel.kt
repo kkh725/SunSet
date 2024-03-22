@@ -79,6 +79,9 @@ class MainActivityViewModel() : ViewModel() {
         val hour = time.split(":")[0].toInt()
         val min = time.split(":")[1].toInt()
 
+        val second = time.split(":")[2].toInt()
+
+
         return Pair(hour,min)
     }
 
@@ -92,13 +95,15 @@ class MainActivityViewModel() : ViewModel() {
 
         if (isTimeInRange(formattedTime,sunriseTime,sunsetTime)){
             Glide.with(context).
-            load(R.drawable.sunrise_img).
+            load("https://images.unsplash.com/photo-1484766280341-87861644c80d?" +
+                    "q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").
             fitCenter().
             into(imageView)
         }
         else{
             Glide.with(context).
-            load(R.drawable.moon_img).
+            load("https://images.unsplash.com/photo-1488866022504-f2584929ca5f?q=80&w=2924&auto=format&" +
+                    "fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").
             fitCenter().
             into(imageView)
         }

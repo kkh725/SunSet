@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         //데이터 바인딩을 사용하기 때문에 옵저버 사용x
         //mvvm에서는 그러면 주로 databinding, live data, viewmodel, repository, data.등이 어우러져 사용된다.
 
+        //시간을 파악하고 이미지바꾸기
         viewModel.changeImage(binding.root.context,binding.imageView3)
         binding.lifecycleOwner = this
 
