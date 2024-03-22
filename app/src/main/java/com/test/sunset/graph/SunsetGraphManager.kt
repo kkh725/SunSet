@@ -24,8 +24,8 @@ class SunsetGraphManager(private val binding: ActivityMainBinding,
     fun makeSunsetGraph(){
 
         val sunriseTime = sunrise.first * 60 + sunrise.second // 일출 시각을 분으로 변환
-        val noonTime = noontime.first * 60 + noontime.second // 정오 시각을 분으로 변환
-        val sunsetTime = sunset.first * 60 + sunset.second // 일몰 시각을 분으로 변환
+        val noonTime = (noontime.first+12) * 60 + noontime.second // 정오 시각을 분으로 변환
+        val sunsetTime = (sunset.first+12) * 60 + sunset.second // 일몰 시각을 분으로 변환
 
         val lineChart = binding.graph
 
@@ -40,7 +40,7 @@ class SunsetGraphManager(private val binding: ActivityMainBinding,
         entries.add(sunriseEntry)
         entries.add(noonEntry) // 정오 시각을 추가합니다.
         entries.add(sunsetEntry)
-        entries.add(Entry(1300f,0f))
+        entries.add(Entry(1500f,0f))
 
         val yAxis: YAxis = lineChart.axisLeft
         //왼쪽 y축 limit 라인이라는게 따로 차트에 선을 그리는작업인듯

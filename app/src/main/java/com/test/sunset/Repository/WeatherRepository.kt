@@ -30,9 +30,10 @@ class WeatherRepository {
             if (response.isSuccessful) {
                 val sunSetResponse: SunSetResponse? = response.body()
                 if (sunSetResponse != null) {
-                    sunset = sunSetResponse.results.sunset
-                    sunrise = sunSetResponse.results.sunrise
-                    noontime = sunSetResponse.results.solarNoon
+                    sunset = amtopm(sunSetResponse.results.sunset)
+                    sunrise = amtopm(sunSetResponse.results.sunrise)
+                    noontime = amtopm(sunSetResponse.results.solarNoon)
+                    Log.d("sunset/sunrise/noontime", amtopm(sunset))
                 }
             } else {
                 Log.d("post2", "44")
@@ -46,5 +47,30 @@ class WeatherRepository {
             Log.e("error", "Exception: ${e.message}", e)
         }
         return "$sunset $sunrise $noontime"
+    }
+
+    fun amtopm(timeString : String) :String{
+
+        // 시간 문자열을 공백(" ")을 기준으로 나누어 시, 분, 초, 오전/오후를 추출합니다.
+        val splitTime = timeString.split(" ")
+        val hourMinuteSecond = splitTime[0].split(":")
+        val hour = hourMinuteSecond[0].toInt()
+        val minute = hourMinuteSecond[1].toInt()
+        val second = hourMinuteSecond[2].toInt()
+        var amPm = splitTime[1]
+
+        // 9시간을 더합니다.
+        var adjustedHour = hour + 9
+
+        // 12시간 형식으로 변환합니다.
+        if (adjustedHour >= 12) {
+            adjustedHour -= 12
+            // 오후인 경우 AM을 PM으로 변경합니다.
+            if (amPm == "AM") {
+                amPm = "PM"
+            }
+        }
+        val adjustedTimeString = String.format("%d:%02d:%02d %s", adjustedHour, minute, second, amPm)
+        return adjustedTimeString
     }
 }

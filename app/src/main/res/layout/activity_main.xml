@@ -51,11 +51,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="@{myViewModel.sunrise != null ? `일출시각: ` + myViewModel.sunrise : ``}"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@{myViewModel.sunset != null ? `일몰시각: ` + myViewModel.sunset : ``}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@+id/imageView3"
                     app:layout_constraintVertical_bias="0.09" />
 
@@ -64,8 +65,8 @@
                     android:id="@+id/tv1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:text="@{myViewModel.sunset != null ? `일몰시각: ` + myViewModel.sunset : ``}"
+                    android:text="@{myViewModel.sunrise != null ? `일출시각: ` + myViewModel.sunrise : ``}"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
@@ -83,6 +84,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/graph"
+                    android:layout_width="381dp"
+                    android:layout_height="165dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="44dp"
+                    android:layout_marginEnd="3dp"
+                    android:background="#75FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_sunrise" />
+
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottie"
                     android:layout_width="183dp"
@@ -95,18 +108,6 @@
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
                     app:lottie_rawRes="@raw/animation_test" />
-
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/graph"
-                    android:layout_width="381dp"
-                    android:layout_height="165dp"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="44dp"
-                    android:layout_marginEnd="3dp"
-                    android:background="#75FFFFFF"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_sunrise" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_destination"

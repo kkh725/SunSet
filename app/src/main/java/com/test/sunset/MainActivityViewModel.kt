@@ -3,12 +3,10 @@ package com.test.sunset
 import android.location.Location
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.sunset.Repository.KakaoMapsRepository
 import com.test.sunset.Repository.WeatherRepository
-import com.test.sunset.itemss.DestinationInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,8 +31,10 @@ class MainActivityViewModel() : ViewModel() {
     val isLoading : LiveData<Boolean> = _isLoading
     val region : LiveData<String> = _region
 
+    fun loadingStart (){ //로딩시작
+        _isLoading.postValue(true)
+    }
     fun getLatLon(location : Location){
-        _isLoading.postValue(true) // 로딩 시작
         _lat.value = (location.latitude.toString())
         _lon.value = (location.longitude.toString())
     }
@@ -68,7 +68,7 @@ class MainActivityViewModel() : ViewModel() {
 
 
     fun splitTime(time : String) : Pair<Int,Int>{
-        var hour = time.split(":")[0].toInt()
+        val hour = time.split(":")[0].toInt()
         val min = time.split(":")[1].toInt()
 
         return Pair(hour,min)

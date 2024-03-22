@@ -5,11 +5,11 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:windowBackgroundBlurRadius">10dp</item>
     </style>
-
     <style name="Theme.Sunset" parent="Base.Theme.Sunset" />
-
-    <style name="CustomAlertDialog">
+    Theme.AppCompat.Light.Dialog
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <!-- 꽉 채운 화면에 배경 없이 (custom view 영역만 보일 것이다.) -->
+
 
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowMinWidthMajor">90%</item>
@@ -25,5 +25,7 @@
 
         <!-- Dialog 가 센터에 나오도록 하자. -->
         <item name="android:windowIsFloating">true</item>
+
+
     </style>
 </resources>

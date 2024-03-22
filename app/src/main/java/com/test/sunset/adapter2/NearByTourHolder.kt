@@ -30,6 +30,7 @@ class NearByTourHolder(
         itemView.setOnClickListener {
 
 
+            //커스텀 view alertdialog에 적용하는과정
             val view = LayoutInflater.from(context).inflate(R.layout.custom_dialog_item, null)
             view.findViewById<TextView>(R.id.tv_region).text = nearByTourInfo.관광지명
             view.findViewById<TextView>(R.id.tv_address).text = nearByTourInfo.소재지지번주소

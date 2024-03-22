@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         binding.myViewModel = viewModel
         setContentView(binding.root)
 
+        viewModel.loadingStart()
 
         //위치 허용 확인 시 위치 추적
         if (RequestPermissionsUtil(this, viewModel).isLocationPermitted()) {
@@ -43,7 +44,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.lon.observe(this, Observer {
             viewModel.fetchSunset(viewModel.lat.value.toString(), viewModel.lon.value.toString())
         })
-
         //x좌표, Y좌표를 입력하면 view model 에서 일몰,일출값 수정
         //좌표값이 바뀔때마다 noontime라이브데이터값이 수정되고 그때마다 그래프 새로그린다.
         viewModel.noontime.observe(this, Observer {  //it-> noontime의 바뀌는값
@@ -51,9 +51,8 @@ class MainActivity : AppCompatActivity() {
             val sunrise = viewModel.splitTime(viewModel.sunrise.value.toString())
             Log.d("sunrise", sunset.toString())
             val noontime = viewModel.splitTime(viewModel.noontime.value.toString())
-//            SunsetGraphManager(binding, sunset, sunrise, noontime).makeSunsetGraph()
+            SunsetGraphManager(binding, sunset, sunrise, noontime).makeSunsetGraph()
         })
-        SunsetGraphManager(binding, Pair(18,30), Pair(6,30),Pair(12,30)).makeSunsetGraph()
 
         val rv_destination = binding.rvDestination
 

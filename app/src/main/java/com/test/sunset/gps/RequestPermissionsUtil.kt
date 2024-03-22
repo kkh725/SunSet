@@ -59,7 +59,7 @@ class RequestPermissionsUtil(private val context: Context, private val viewModel
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            locationManager.requestLocationUpdates(
+            locationManager.requestLocationUpdates( //NETWORK_PROVIDER과 GPS_PROVIDER를 사용할 수 있다.
                 LocationManager.NETWORK_PROVIDER,
                 0,
                 0f,
