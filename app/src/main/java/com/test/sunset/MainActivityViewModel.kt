@@ -54,6 +54,7 @@ class MainActivityViewModel() : ViewModel() {
             try {
                 sunsetResult = WeatherRepository().getSunSetAPI(lat, lng)
                 val Kakaoresult = KakaoMapsRepository().getRegionAPI(lat,lng)
+
                 val parts = sunsetResult.split(" ") // 가져온 문자열을 sunset, sunrise 로 자른다.
                 Log.e("MyViewModel", sunsetResult+parts[4] + parts[5])
                 Log.e("MyViewModel", Kakaoresult+lat+lng)

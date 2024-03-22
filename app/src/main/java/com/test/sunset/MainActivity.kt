@@ -17,6 +17,7 @@ import com.test.sunset.graph.SunsetGraphManager
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainActivityViewModel
     private lateinit var binding: ActivityMainBinding
+    lateinit var region : String
 
     override fun onStart() {
         RequestPermissionsUtil(this, viewModel).requestLocation()
@@ -64,6 +65,10 @@ class MainActivity : AppCompatActivity() {
             SunsetGraphManager(binding, sunset, sunrise, noontime).makeSunsetGraph()
         })
 
+        viewModel.region.observe(this, Observer {
+            region = it
+        })
+
         val rv_destination = binding.rvDestination
 
         val destinationlist: MutableList<DestinationInfo> = mutableListOf()
@@ -75,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         destinationlist.add(DestinationInfo("-","1",ContextCompat.getColor(binding.root.context, R.color.custom_whiteblur)))
         destinationlist.add(DestinationInfo("-","2", ContextCompat.getColor(binding.root.context, R.color.custom_red)))
 
-        rv_destination.adapter = DestinationAdapter(destinationlist)
+        rv_destination.adapter = DestinationAdapter(destinationlist,viewModel)
 
 
     }
@@ -98,8 +103,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    }
-
-
-
-
+}

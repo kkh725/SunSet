@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.test.sunset.adapter2.NearByTourAdapter
@@ -17,10 +18,16 @@ import com.test.sunset.itemss.TourData
  */
 class RecommendTourRegion : AppCompatActivity() {
     private lateinit var binding: ActivityRecommendTourRegionBinding
+    private lateinit var viewModel: MainActivityViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecommendTourRegionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
+
+        //들어올때 현재위치 받아서 들어옴
+        val region = intent.getStringExtra("region").toString().split(" ")[0]
+        Log.d("로그",region )
 
         val tourInfoList : MutableList<NearByTourInfo> = mutableListOf()
 
@@ -34,12 +41,15 @@ class RecommendTourRegion : AppCompatActivity() {
             // 필요한 만큼 계속 추가
         )
 
+
+
+
         //gson 라이브러리를 사용해서 json문자열을 TourData객체로 변환하는 함수.
         val tourdata = parseJsonToTourData(jsonread)
         if (tourdata!= null){
             for (record in tourdata.records){
 
-                if (record.소재지도로명주소.contains("강원도")){ // 실제로는 현재위치를 통해 추적할것
+                if (record.소재지도로명주소.contains(region)){ // 실제로는 현재위치를 통해 추적할것
                     //관광지명이 있을경우 지정한이미지. 없을경우 기본이미지
                     val imgResId = imageMap[record.관광지명] ?: R.drawable.sunsetimg
                     Log.d("관광지명", record.관광지명)
