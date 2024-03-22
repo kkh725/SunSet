@@ -51,6 +51,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-simplexml:2.9.0")
     implementation ("com.google.android.gms:play-services-location:21.2.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation ("com.airbnb.android:lottie:6.4.0") //로티애니메이션
     //차트 mpchart
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")

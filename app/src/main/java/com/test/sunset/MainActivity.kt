@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
             region = it
         })
 
+
         val rv_destination = binding.rvDestination
 
         val destinationlist: MutableList<DestinationInfo> = mutableListOf()

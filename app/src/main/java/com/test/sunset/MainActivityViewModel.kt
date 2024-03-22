@@ -7,12 +7,19 @@ import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.test.sunset.Repository.KakaoMapsRepository
 import com.test.sunset.Repository.WeatherRepository
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.util.Calendar
@@ -20,7 +27,7 @@ import java.util.Locale
 
 class MainActivityViewModel() : ViewModel() {
 
-    private lateinit var sunsetResult : String
+    var sunsetResult2 = ""
 
     private val _sunset = MutableLiveData<String>()
     private val _sunrise = MutableLiveData<String>()
@@ -48,28 +55,30 @@ class MainActivityViewModel() : ViewModel() {
 
     //view model 에서 repository에서의 api 호출을 진행하고, 코루틴으로 둘러싸서 제대로된 sunset값을 얻는다.
     fun fetchSunset(lat: String, lng: String) {
-
-
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch {
             try {
-                sunsetResult = WeatherRepository().getSunSetAPI(lat, lng)
-                val Kakaoresult = KakaoMapsRepository().getRegionAPI(lat,lng)
+                val sunsetResult = withContext(Dispatchers.IO) {
+                    WeatherRepository().getSunSetAPI(lat, lng)
 
-                val parts = sunsetResult.split(" ") // 가져온 문자열을 sunset, sunrise 로 자른다.
-                Log.e("MyViewModel", sunsetResult+parts[4] + parts[5])
-                Log.e("MyViewModel", Kakaoresult+lat+lng)
+                }
+                val Kakaoresult = withContext(Dispatchers.Default) {
+                    KakaoMapsRepository().getRegionAPI(lat, lng)
+                }
 
+                val parts = sunsetResult.split(" ")
+                Log.e("MyViewModel", sunsetResult + parts[4] + parts[5])
+                Log.e("MyViewModel", Kakaoresult + lat + lng)
+
+                Log.e("MyViewModel222", sunsetResult2)
                 _sunset.postValue(parts[0] + parts[1])
                 _sunrise.postValue(parts[2] + parts[3])
                 _noontime.postValue(parts[4] + parts[5])
                 _region.postValue(Kakaoresult)
-
             } catch (e: Exception) {
                 // Handle error
                 Log.e("MyViewModel", "Error fetching sunset: ${e.message}", e)
-            }
-            finally { //비동기 작업 수행 완료시
-                _isLoading.postValue(false) //로딩 종료
+            } finally {
+                _isLoading.postValue(false)
             }
         }
     }
@@ -78,9 +87,6 @@ class MainActivityViewModel() : ViewModel() {
     fun splitTime(time : String) : Pair<Int,Int>{
         val hour = time.split(":")[0].toInt()
         val min = time.split(":")[1].toInt()
-
-        val second = time.split(":")[2].toInt()
-
 
         return Pair(hour,min)
     }
