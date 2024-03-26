@@ -35,7 +35,7 @@ class RecommendTourRegion : AppCompatActivity() {
         Log.d("JSON STR", jsonread)
 
         //관광지명에 따른 초기5개정도의 목록 이미지세팅
-        //세팅2 세팅3 test
+        //세팅2 세팅 testtest
 
         val imageMap = mapOf(
             "일제 경성호국신사 계단(108계단)" to R.drawable.city_img,
