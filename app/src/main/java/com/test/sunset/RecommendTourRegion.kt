@@ -45,7 +45,7 @@ class RecommendTourRegion : AppCompatActivity() {
         )
 
 
-//test3 과정입니다 과정3입니다.
+//test3 과정입니다 과정3입니다. 과정4입니다
 
         //gson 라이브러리를 사용해서 json문자열을 TourData객체로 변환하는 함수.
         val tourdata = parseJsonToTourData(jsonread)
