@@ -7,7 +7,10 @@ import com.test.sunset.MainActivityViewModel
 import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.databinding.GridItemDestinationBinding
 
-class DestinationAdapter(private val DestinationList : List<DestinationInfo>,private val viewModel: MainActivityViewModel) : RecyclerView.Adapter<DestinationHolder>() {
+class DestinationAdapter(
+    private val DestinationList: List<DestinationInfo>,
+    private val viewModel: MainActivityViewModel
+) : RecyclerView.Adapter<DestinationHolder>() {
     private lateinit var  binding: GridItemDestinationBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DestinationHolder {
         binding = GridItemDestinationBinding.inflate(LayoutInflater.from(parent.context),parent,false)

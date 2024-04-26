@@ -1,5 +1,6 @@
 package com.test.sunset
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,8 @@ class RecommendTourRegion : AppCompatActivity() {
     private lateinit var binding: ActivityRecommendTourRegionBinding
     private lateinit var viewModel: MainActivityViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        AlertDialog.Builder(this).setOnCancelListener {  }
         super.onCreate(savedInstanceState)
         binding = ActivityRecommendTourRegionBinding.inflate(layoutInflater)
         setContentView(binding.root)

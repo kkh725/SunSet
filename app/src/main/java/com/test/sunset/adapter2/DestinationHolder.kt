@@ -10,6 +10,7 @@ import com.test.sunset.itemss.DestinationInfo
 import com.test.sunset.databinding.GridItemDestinationBinding
 
 class DestinationHolder(private val binding: GridItemDestinationBinding) : RecyclerView.ViewHolder(binding.root) {
+ 
 
     fun bind(destinationInfo: DestinationInfo,viewModel: MainActivityViewModel) {
         binding.destinationInfo =
@@ -19,7 +20,7 @@ class DestinationHolder(private val binding: GridItemDestinationBinding) : Recyc
 
             "1" -> binding.card.setOnClickListener {
                     val intent = Intent(binding.root.context, AllTourRecommend::class.java)
-                intent.putExtra("region", viewModel.region.value)
+                intent.putExtra("region2", viewModel.region.value)
                     binding.root.context.startActivity(intent)
 
             }
