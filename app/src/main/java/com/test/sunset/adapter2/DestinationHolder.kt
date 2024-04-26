@@ -27,7 +27,7 @@ class DestinationHolder(private val binding: GridItemDestinationBinding) : Recyc
 
             "2" -> binding.card.setOnClickListener {
                 val intent = Intent(binding.root.context, RecommendTourRegion::class.java)
-                intent.putExtra("region", viewModel.region.value)
+                intent.putExtra("region2", viewModel.region.value)
                 binding.root.context.startActivity(intent)
             }
 
